@@ -1,0 +1,9 @@
+     |-----handy-ruler------------------------------------------------------|
+caddy: caddy  (an open source web server)
+caddy:
+caddy: caddy is a powerful and flexible web server with automatic https written in Go.
+caddy: written in go which can act both as a file server or a reverse proxy.
+caddy: caddy automatically obtains andrenews TLS certitificates.
+caddy:
+caddy: https://caddyserver.com/
+caddy:

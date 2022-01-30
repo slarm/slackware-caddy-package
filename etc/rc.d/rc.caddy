@@ -1,0 +1,56 @@
+#!/bin/sh
+#
+# /etc/rc.d/rc.httpd
+#
+# Start/stop/restart the Caddy web server.
+#
+# To make Apache start automatically at boot, make this
+# file executable:  chmod 755 /etc/rc.d/rc.caddy
+#
+
+PIDFILE=/var/run/caddy.pid
+LOGFILE=/var/log/caddy/caddy.log
+CONFIGFILE=/etc/caddy/Caddyfile
+
+case "$1" in
+  'start')
+    if [ ! -e $PIDFILE ]; then
+      /usr/bin/caddy start --pidfile $PIDFILE \
+        --config $CONFIGFILE  &>> $LOGFILE
+    else
+      echo "Pid file already exists. Caddy running?"
+      exit 0
+    fi
+
+    if [ $? -ne 0 ]; then
+       exit 1
+    fi
+
+    # If no pid file exists after a start something
+    # probably went wrong. Caddy needs a second or so
+    # before it creates the pid file.
+    sleep 1
+    if [ ! -e $PIDFILE ]; then
+      echo "Failed starting Caddy."
+      exit 1
+    fi
+  ;;
+  'stop')
+    pkill -f /usr/bin/caddy
+    rm -f /var/run/caddy.pid
+  ;;
+  'reload')
+    /usr/bin/caddy reload --config /etc/caddy/Caddyfile \
+      &>> $LOGFILE
+  ;;
+  'restart')
+   pkill -f /usr/bin/caddy
+   /usr/bin/caddy run --environ --pidfile /var/run/$PIDFILE \
+     --config $CONFIGFILE >> $LOGFILE
+  ;; 
+  *)
+    echo "Usage: $0 {start|stop|reload|restart}"
+  ;;
+esac
+
+
