@@ -45,8 +45,8 @@ case "$1" in
   ;;
   'restart')
    pkill -f /usr/bin/caddy
-   /usr/bin/caddy run --environ --pidfile /var/run/$PIDFILE \
-     --config $CONFIGFILE >> $LOGFILE
+   /usr/bin/caddy start --pidfile /var/run/$PIDFILE \
+     --config $CONFIGFILE &>> $LOGFILE
   ;; 
   *)
     echo "Usage: $0 {start|stop|reload|restart}"
