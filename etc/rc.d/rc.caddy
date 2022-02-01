@@ -45,12 +45,13 @@ case "$1" in
   ;;
   'restart')
    pkill -f /usr/bin/caddy
-   /usr/bin/caddy start --pidfile /var/run/$PIDFILE \
+   /usr/bin/caddy --environ --pidfile $PIDFILE \
      --config $CONFIGFILE &>> $LOGFILE
   ;; 
+  'status')
+  echo "caddy running with pid `cat $PIDFILE`"
+  ;;
   *)
-    echo "Usage: $0 {start|stop|reload|restart}"
+    echo "Usage: $0 {start|stop|reload|restart|status}"
   ;;
 esac
-
-
