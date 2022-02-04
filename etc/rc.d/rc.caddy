@@ -45,7 +45,7 @@ case "$1" in
   ;;
   'restart')
    pkill -f /usr/bin/caddy
-   /usr/bin/caddy --environ --pidfile $PIDFILE \
+   /usr/bin/caddy start --pidfile $PIDFILE \
      --config $CONFIGFILE &>> $LOGFILE
   ;; 
   'status')
