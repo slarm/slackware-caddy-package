@@ -11,7 +11,6 @@ git https://github.com/slarm/slackware-caddy-package
 The directory structure should look like this
 ```bash
 .
-|-- README.md
 |-- etc
 |   |-- caddy
 |   |   `-- Caddyfile
