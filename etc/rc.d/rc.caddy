@@ -49,8 +49,13 @@ case "$1" in
      --config $CONFIGFILE &>> $LOGFILE
   ;; 
   'status')
-  echo "Caddy running with pid `cat $PIDFILE`"
+    if [ -e $PIDFILE ]; then
+      echo "Caddy running with pid `cat $PIDFILE`"
+    else
+      echo "Caddy not running"
+    fi
   ;;
+
   *)
     echo "Usage: $0 {start|stop|reload|restart|status}"
   ;;
