@@ -5,9 +5,8 @@ if [ ! -e var/log/caddy ]; then
   chmod 755 var/log/caddy
 fi
 
-# Don't wipe out an existing document root with symlinks.
 if [ ! -e srv/caddy ]; then
-  ( cd srv ; ln -sf /var/www caddy )
+  mkdir srv/caddy
 fi
 
 OLDLR=etc/logrotate.d/caddy
