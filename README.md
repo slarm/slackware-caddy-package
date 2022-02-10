@@ -3,7 +3,7 @@ Scripts and info for creatinga Caddy package for Slackware.
 ## Usage
 ### Clone this repo
 ```bash
-git https://github.com/slarm/slackware-caddy-package
+git clone https://github.com/slarm/slackware-caddy-package
 ```
 ### Download or compile caddy
 [Find static binaries here](https://caddyserver.com/download) or [build from source](https://caddyserver.com/docs/build).
